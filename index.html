@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Heartfelt Apology</title>
+    <!-- Google Fonts for a soft, romantic touch -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styling */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', sans-serif; /* Default font */
+            background-color: #ffeef2; /* Very light pink background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to start for scrolling if content is long */
+            min-height: 100vh;
+            color: #4a4a4a; /* Darker gray for readability */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            position: relative; /* Needed for absolute positioning of hearts */
+            transition: background-color 1s ease-in-out; /* Smooth transition for background */
+        }
+
+        /* Main Container Styling */
+        .container {
+            background-color: #ffffff; /* White background for the content box */
+            padding: 30px; /* Ample padding inside the container */
+            border-radius: 25px; /* More rounded corners for a softer look */
+            box-shadow: 0 8px 25px rgba(255, 153, 179, 0.3); /* Soft pink shadow */
+            max-width: 900px; /* Maximum width for the content */
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out; /* Gentle fade-in animation */
+            box-sizing: border-box;
+            z-index: 1; /* Ensure content is above falling elements */
+            position: relative; /* Needed for z-index to work */
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header (H1) Styling */
+        h1 {
+            font-family: 'Dancing Script', cursive; /* More romantic font for the main title */
+            font-size: 3.2em; /* Larger, more impactful size */
+            color: #e66487; /* Romantic rose pink */
+            margin-bottom: 25px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Subtle text shadow */
+        }
+
+        /* Section Headings (H2) Styling */
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.2em;
+            color: #d1416e; /* Slightly deeper pink for section titles */
+            margin-top: 40px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.15em;
+            line-height: 1.8; /* Increased line height for readability */
+            margin-bottom: 20px;
+            color: #555555; /* Soft gray for body text */
+        }
+
+        /* Apology Message Box Styling */
+        .apology-box {
+            background-color: #fff0f5; /* Blushing pink background */
+            padding: 30px;
+            border-radius: 18px; /* Gently rounded corners */
+            box-shadow: inset 0 2px 8px rgba(220, 150, 160, 0.2); /* Soft inner shadow */
+            text-align: left;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #ffdbf0; /* Very subtle border */
+        }
+
+        .apology-box p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            white-space: pre-wrap; /* Preserves whitespace and newlines */
+            color: #333333; /* Darker text for the apology itself */
+        }
+
+        /* Image and Video Grid Styling */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            gap: 25px; /* Space between media items */
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .media-grid img,
+        .media-grid .video-wrapper {
+            width: 100%;
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensures images cover the area */
+            border-radius: 15px; /* Rounded corners for media */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Standard shadow for media */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: block; /* Remove extra space below images */
+        }
+
+        .media-grid img:hover,
+        .media-grid .video-wrapper:hover {
+            transform: translateY(-8px); /* Lift effect on hover */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* More prominent shadow on hover */
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100) */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Your Name Styling */
+        .signature {
+            font-family: 'Dancing Script', cursive; /* Match the main title font */
+            font-size: 2.8em;
+            color: #e66487; /* Romantic rose pink */
+            margin-top: 50px;
+            line-height: 1.3;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em; /* Smaller on tablets */
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .apology-box {
+                padding: 20px;
+            }
+
+            .apology-box p {
+                font-size: 0.95em;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr; /* Single column on smaller screens */
+            }
+
+            .signature {
+                font-size: 2.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+
+            h1 {
+                font-size: 2em; /* Even smaller on phones */
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .apology-box {
+                padding: 15px;
+            }
+
+            .media-grid img,
+            .media-grid .video-wrapper {
+                height: 200px; /* Adjust height for mobile */
+            }
+        }
+
+        /* --- Falling Elements Animation CSS --- */
+        .falling-element {
+            position: absolute;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: 10; /* Above the main content */
+            font-size: 2em; /* Default size for emojis */
+            animation: fall linear infinite;
+        }
+
+        /* Heart shape for falling-element */
+        .falling-element.heart-shape {
+            background-color: #ffb6c1; /* Light pink heart */
+            width: 20px;
+            height: 20px;
+            transform: rotate(-45deg);
+        }
+
+        .falling-element.heart-shape::before,
+        .falling-element.heart-shape::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ffb6c1;
+        }
+
+        .falling-element.heart-shape::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .falling-element.heart-shape::after {
+            top: 0;
+            left: 10px;
+        }
+
+        @keyframes fall {
+            0% { top: -10%; opacity: 1; transform: translateX(0) rotate(var(--rotation, 0deg)); }
+            100% { top: 110%; opacity: 0; transform: translateX(calc(var(--offset) * 1px)) rotate(var(--rotation, 0deg)); }
+        }
+
+        /* Interactive Question Styling */
+        .interactive-question {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center;
+            min-height: 100px; /* Ensure space for content */
+            position: relative; /* For the response message to be centered */
+        }
+
+        .interactive-question h2 {
+            font-size: 2.5em;
+            color: #e66487;
+            margin-bottom: 20px; /* Space between question and buttons */
+        }
+
+        .interactive-question .buttons-container {
+            display: flex; /* Use flexbox to align buttons next to each other */
+            justify-content: center; /* Center buttons horizontally */
+            gap: 30px; /* Space between Yes and No buttons */
+            width: 100%; /* Take full width to center effectively */
+            position: relative; /* For button movement */
+            height: 60px; /* Give space for buttons to move within */
+        }
+
+        .interactive-question button {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2em;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s linear; /* Only transform for movement */
+            position: absolute; /* Allows precise movement */
+            top: 0; /* Align to the top of the buttons-container */
+            transform: translateX(var(--button-x-offset, 0)) translateY(var(--button-y-offset, 0)); /* For movement */
+        }
+
+        .interactive-question .yes-button {
+            background-color: #a7e9ca; /* Light green */
+            color: #ffffff;
+            left: calc(50% - 100px); /* Adjust initial position */
+        }
+
+        .interactive-question .no-button {
+            background-color: #ff8a8a; /* Light red */
+            color: #ffffff;
+            left: calc(50% + 20px); /* Adjust initial position */
+        }
+
+        .interactive-question button:hover {
+            opacity: 0.8;
+        }
+
+        .response-message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #d1416e;
+            font-weight: bold;
+            position: absolute; /* Position relative to .interactive-question */
+            top: 50%; /* Center vertically within .interactive-question */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+
+        .gloomy-background {
+            background-color: #333333; /* Darker, gloomy background */
+        }
+
+        /* --- Interactive Pixel Heart Styling --- */
+        .interactive-heart-wrapper {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically align items */
+            gap: 15px; /* Space between message and heart */
+        }
+
+        .interactive-pixel-heart {
+            width: 60px; /* Larger size for easier clicking */
+            height: 60px;
+            background-color: #e66487; /* Romantic rose pink */
+            transform: rotate(-45deg); /* Rotate to form heart shape */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3); /* More prominent shadow */
+            cursor: pointer; /* Indicate it's clickable */
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            border-radius: 10px; /* Soft square corners for pixelated feel */
+            animation: bounceIn 1s ease-out forwards; /* Bounce in animation on load */
+            flex-shrink: 0; /* Prevent heart from shrinking */
+        }
+
+        .interactive-pixel-heart::before,
+        .interactive-pixel-heart::after {
+            content: '';
+            position: absolute;
+            width: 60px; /* Same width as base */
+            height: 60px; /* Same height as base */
+            background-color: #e66487;
+            border-radius: 50%; /* Make them circles */
+        }
+
+        .interactive-pixel-heart::before {
+            top: -30px; /* Position above */
+            left: 0;
+        }
+
+        .interactive-pixel-heart::after {
+            top: 0;
+            left: 30px; /* Position to the right */
+        }
+
+        /* Clicked state for the interactive heart */
+        .interactive-pixel-heart:active {
+            background-color: #c94065; /* Darker pink on click */
+            transform: scale(0.9) rotate(-45deg); /* Slight press effect */
+        }
+
+        /* Bounce-in animation for the interactive pixel heart */
+        @keyframes bounceIn {
+            0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+            50% { transform: scale(1.2) rotate(-45deg); opacity: 1; }
+            70% { transform: scale(0.95) rotate(-45deg); }
+            100% { transform: scale(1) rotate(-45deg); }
+        }
+
+        /* --- "Open the Heart" Message Styling --- */
+        .open-heart-message {
+            font-family: 'Dancing Script', cursive; /* Changed font to Dancing Script */
+            font-size: 1.8em;
+            color: #d1416e;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            white-space: nowrap; /* Prevent text from wrapping */
+            transform: translateX(100%); /* Start off-screen to the right */
+            animation: slideInMessage 1.5s ease-out 1s forwards; /* Slide in after heart bounce */
+            opacity: 0;
+        }
+
+        @keyframes slideInMessage {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        /* --- Apology Modal Styling --- */
+        .apology-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000; /* Above everything else */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+
+        .apology-modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .apology-modal-content {
+            background-color: #fff0f5; /* Blushing pink background */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 153, 179, 0.6); /* Stronger pink shadow */
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.8); /* Start smaller */
+            transition: transform 0.3s ease-out;
+        }
+
+        .apology-modal-overlay.visible .apology-modal-content {
+            transform: scale(1); /* Scale up on visible */
+        }
+
+        .apology-modal-content h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            color: #d1416e;
+            margin-bottom: 5px; /* Reduced margin here */
+        }
+
+        .apology-modal-content p {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: #333333;
+            margin-bottom: 30px;
+            white-space: pre-wrap; /* Preserve new lines */
+        }
+
+        .apology-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.2em;
+            color: #d1416e;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .apology-modal-close:hover {
+            color: #e66487;
+            transform: rotate(90deg);
+        }
+
+        /* Responsive adjustments for interactive heart and modal */
+        @media (max-width: 768px) {
+            .interactive-heart-wrapper {
+                top: 20px; /* Adjust top for smaller screens */
+                right: 20px;
+                gap: 10px; /* Reduce gap */
+            }
+            .open-heart-message {
+                font-size: 1.4em; /* Smaller font for message */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .interactive-heart-wrapper {
+                top: 15px;
+                right: 15px;
+                gap: 8px; /* Further reduce gap */
+            }
+            .interactive-pixel-heart {
+                width: 45px;
+                height: 45px;
+            }
+            .interactive-pixel-heart::before,
+            .interactive-pixel-heart::after {
+                width: 45px;
+                height: 45px;
+            }
+            .interactive-pixel-heart::before {
+                top: -22.5px;
+            }
+            .interactive-pixel-heart::after {
+                left: 22.5px;
+            }
+            .open-heart-message {
+                font-size: 1.1em; /* Even smaller font for message on mobile */
+            }
+            .apology-modal-content {
+                padding: 25px;
+            }
+            .apology-modal-content h3 {
+                font-size: 2em;
+            }
+            .apology-modal-content p {
+                font-size: 1em;
+            }
+            .apology-modal-close {
+                font-size: 1.8em;
+                top: 10px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- The new interactive pixel heart and message wrapper -->
+    <div class="interactive-heart-wrapper">
+        <span class="open-heart-message">Open the Heart</span>
+        <div class="interactive-pixel-heart" id="interactiveApologyHeart"></div>
+    </div>
+
+    <!-- The Apology Modal Overlay (initially hidden) -->
+    <div class="apology-modal-overlay" id="apologyModal">
+        <div class="apology-modal-content">
+            <button class="apology-modal-close" id="closeApologyModal">&times;</button>
+            <h3>My Dearest Love,</h3>
+            <p>
+                <!--
+                  INSTRUCTIONS FOR CUSTOMIZATION:
+                  This is the special apology message that appears when the heart is clicked.
+                  Make this message concise, powerful, and directly address his feelings.
+                  You can use new lines (`\n`) for formatting.
+                -->
+                I have tried my best at this...I really hope it isn't too late..
+                I truly am sorry for everything thangam..
+                I love you Shrijan..I miss you..          </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header section with a cute apology title -->
+        <h1>I am sincerely sorry !!</h1>
+
+        <!-- Introduction message -->
+        <p>
+            Hey thangam..I am sincerely sorry for all the arguments, heartaches and anger I have given you.
+            I wanna set things right. I value our relationship more than anything and the thought of losing you breaks me down.
+            I promise to do better and be the same old person that you fell in love with. I am willing to change and grow for us.
+        </p>
+
+        <!-- Section for heartfelt apologies -->
+        <div class="apology-box">
+            <h2>Why I can't stop trying!! </h2>
+            <p>
+                I feel incomplete without your love, your communication, your presence
+                and so much more that's bits and pieces of you.
+
+                The absence of your warmth is equal to death and I have been facing it each day.
+                (Believe me, It is that painful)
+
+                You were my person, my everything, that one person I could tell everything without getting judged,
+                that one person
+                I can be myself with, that one person who without a doubt always gave me a sense of peace,
+                security, and protection. That one person who showed me that a perfect love, and a perfect future
+                exists. I close my eyes and see this lil glimpses into the future, a future with you and me.
+                Maybe (Definitely) less fights and possibly (Definitely) more love.
+
+                Overtime I got more possessive, overthought and felt all the other emotions which I thought I should'nt
+                have but realised it was only out of love.
+                You made me think life was worth living because you just made everything better.
+
+                I wanna protect you at all costs. I am sorry to have hurt you and put you through a lot of situations you
+                weren't meant to be put in.
+
+                I am sorry to be a bitch sometimes.
+                I am sorry that I haven't understood you better.
+                I had my own struggles but it wasn't fair that you got dragged into it and it wasn't especially fair
+                that I expected you to understand when you were hurt.
+
+                I know how much you are worth everything. You are worth every emotion I ever went through.
+                You are worth it and I would be a fool if I ever let go of your hand at any point of time.
+                I promised to stay til the end and I am certain I can handle anything between us.
+
+                I didn't choose to love only your best self, I am here for everything.
+                I won't expect the same from you , Instead I am gonna be the person who once made you special
+                and secure in this relationship.
+
+                I want to earn back your trust and show you how much I cherish you and wanna be with you.
+                Unaku nee , Enaku naa nu oru time irunthchu.
+                I am dying to bring it back.
+                I know you don't care about me like you used to or nothing about me bothers you now.
+                But what can I even do or say? I love you more than words can be put into.
+                I wish you would come back to me. All I can do is wish. I know my place now.
+
+                I am sorry to have made you feel things you shouldn't have.
+                I am genuinely and sincerely sorry for everything.
+
+                I love you the most thangam. I do and will always.
+                You'll always find me waiting for you with the same amount of feelings (maybe more)
+                Just waiting to give you everything.
+            </p>
+        </div>
+
+        <div class="apology-box">
+            <h2>Why do I deserve a second chance at this? </h2>
+            <p>
+                1.I have gotten better at communicating and opening up, This will prevent a huge number of fights.
+                2.I have learnt my lessons from all the previous arguments and fights and have corrected myself leaving no room for errors.
+                3.I have changed myself to be more accepting and understanding.
+                4.I will be supportive regarding anything.
+                5.I will adjust and adapt myself to anything even if I don't like it.
+                6.I will be more responsible and make you feel secure.
+                7.I will keep you out of overthinking and not put you in that spot at any point of time.
+                8.I will always respect your opinions and be patient and tolerant during difficult times.
+                9.I will be more loving and romantic especially.
+                10.I will show you what it's like to feel things you haven't ever felt before (only
+                +ve things).
+                Lastly , I don't and wouldn't have done this for anyone else if not you.
+                I will show you how much I have loved you and will love you.
+                I will properly make it up for the things I have done before and apologise appropriately.
+            </p>
+        </div>
+        <div>
+            <div class=""apology-box">
+                <h2> The reasons for my craziness :( </h2>
+                <p>
+                    1.I have overthought a lot before and felt insecure over certain issues
+                    and I couldn't be reassured because it happened again and I was 
+                    scared if it will keep happening.
+                    2.I was frustrated being away and especially at being unable to balance 
+                    my studies, work and personal life. 
+                    3.Due to the lack of a proper routine, I became weak and was really absent minded.  
+                    I felt tired all the time and either slept a lot or didn't sleep at all.
+                    Being absent minded was my flaw for a long time, I am not giving a reason for it.
+                    4.Naturally , I get frustrated quickly if I try explaining something and someone doesn't get it.
+                    It can be with anyone and this might be the reason I wasn't patient at times.
+                    5.Without a proper routine, I pushed myself into a disturbed, undescribable state.
+                    Everyone thinks it is simple to come out of it but if it was I would have long time ago.
+                    It isn't. 
+                    6.Sometimes , I am angry because I am hurt. If I am hurt sometimes, that is because
+                    I really love you and I just wouldn't have expected it to happen or I wouldn't have 
+                    expected that I would have put you in a position like that. 
+                </p>
+                    </div>
+            <h2>Memories We Share:</h2>
+            <div class="media-grid">
+                <img
+                    src="https://placehold.co/400x300/f0d9e6/9c5b7c?text=Your+Cute+Pic+1"
+                    alt="Our Cute Memory 1"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="https://placehold.co/400x300/e6f0d9/7c9c5b?text=Your+Cute+Pic+2"
+                    alt="Our Cute Memory 2"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="https://placehold.co/400x300/d9e6f0/5b7c9c?text=Your+Cute+Pic+3"
+                    alt="Our Cute Memory 3"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                </div>
+        </div>
+
+        <div>
+            <h2>Moments to Replay:</h2>
+            <div class="media-grid">
+                <div class="video-wrapper">
+                    <iframe
+                        src="http://www.youtube.com/embed/dQw4w9WgXcQ"
+                        title="Placeholder Video 1 (You can replace this!)"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe
+                        src="http://www.youtube.com/embed/oZ6D_O_6u0Q"
+                        title="Placeholder Video 2 (You can replace this!)"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+                </div>
+        </div>
+
+        <div class="interactive-question">
+            <h2>Will you forgive me?</h2>
+            <div class="buttons-container">
+                <button class="yes-button" onclick="handleForgive('yes')">Yes</button>
+                <button class="no-button" onclick="handleForgive('no')">No</button>
+            </div>
+            <div id="response" class="response-message" style="display: none;"></div>
+        </div>
+
+        <p>
+            I hope you can find it in your heart to forgive me. My love for you is endless.
+            Please know that every apology comes from the deepest part of my heart.
+        </p>
+
+        <p class="signature">
+            With all my love,
+            <br />
+            thangam
+        </p>
+    </div>
+
+    <script>
+        // JavaScript for Falling Elements Animation and Interactive Logic
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const responseDiv = document.getElementById('response');
+            const yesButton = document.querySelector('.yes-button');
+            const noButton = document.querySelector('.no-button');
+
+            let noClickCount = 0; // Counter for 'No' clicks
+            let lastMouseX = 0;
+            let lastMouseY = 0;
+
+            // Update mouse coordinates for "No" button movement
+            document.addEventListener('mousemove', (e) => {
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+            });
+
+            // Function to create and animate a single falling element (heart, smile, or heartbreak)
+            function createFallingElement(type = 'heart') {
+                const element = document.createElement('div');
+                element.classList.add('falling-element');
+
+                if (type === 'heart') {
+                    element.classList.add('heart-shape'); // Use the CSS heart shape
+                } else if (type === 'smile') {
+                    element.textContent = '😊'; // Emoji for smile
+                } else if (type === 'heartbreak') {
+                    element.textContent = '💔'; // Emoji for heartbreak
+                    element.style.color = '#ff0000'; // Red color for heartbreak
+                    element.style.fontSize = '3em'; // Larger broken heart
+                }
+
+                element.style.left = `${Math.random() * 100}vw`;
+                const duration = Math.random() * 8 + 5; // 5 to 13 seconds
+                element.style.animationDuration = `${duration}s`;
+                const delay = Math.random() * 5; // 0 to 5 seconds
+                element.style.animationDelay = `${delay}s`;
+                const drift = Math.random() * 200 - 100; // -100px to 100px
+                element.style.setProperty('--offset', drift);
+                const rotation = Math.random() * 360; // Random rotation
+                element.style.setProperty('--rotation', `${rotation}deg`);
+                element.style.opacity = Math.random() * 0.7 + 0.3; // 30% to 100% opacity
+                
+                // For non-heart shapes, set initial scale and rotation
+                if (type !== 'heart') {
+                    element.style.transform = `rotate(${rotation}deg) scale(${Math.random() * 0.5 + 0.75})`;
+                }
+
+                body.appendChild(element);
+
+                element.addEventListener('animationend', () => {
+                    element.remove();
+                });
+            }
+
+            // Function to start a burst of falling elements
+            function startFallingElements(count = 30, type = 'heart') {
+                for (let i = 0; i < count; i++) {
+                    setTimeout(() => createFallingElement(type), Math.random() * 1000); // Stagger creation over 1 second
+                }
+            }
+            
+            // Function to move the "No" button away from the mouse
+            function moveNoButton() {
+                const buttonRect = noButton.getBoundingClientRect();
+                // Get the center of the button relative to the viewport
+                const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+                const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+
+                // Calculate direction vector from mouse to button
+                const deltaX = buttonCenterX - lastMouseX;
+                const deltaY = buttonCenterY - lastMouseY;
+
+                // Calculate distance
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                // If mouse is too close, move the button
+                const minDistance = 100; // Minimum distance to maintain from mouse (adjusted for new positioning)
+                const moveAmount = 30; // How much to move it further each time
+
+                if (distance < minDistance) {
+                    const angle = Math.atan2(deltaY, deltaX);
+
+                    // Calculate new translation offsets
+                    let currentOffsetX = parseFloat(noButton.style.getPropertyValue('--button-x-offset')) || 0;
+                    let currentOffsetY = parseFloat(noButton.style.getPropertyValue('--button-y-offset')) || 0;
+
+                    let newOffsetX = currentOffsetX + Math.cos(angle) * moveAmount;
+                    let newOffsetY = currentOffsetY + Math.sin(angle) * moveAmount;
+
+                    // Apply new offsets
+                    noButton.style.setProperty('--button-x-offset', `${newOffsetX}px`);
+                    noButton.style.setProperty('--button-y-offset', `${newOffsetY}px`);
+                }
+            }
+
+            window.handleForgive = function(answer) {
+                // Reset background color on any click that's not the final 'No'
+                if (answer === 'yes' || (answer === 'no' && noClickCount < 3)) {
+                    body.classList.remove('gloomy-background');
+                }
+
+                if (answer === 'yes') {
+                    // Directly show "I love you!!" message and falling elements
+                    responseDiv.textContent = 'I love you !! Thank you for giving me another chance ❤️';
+                    responseDiv.style.display = 'block';
+                    yesButton.style.display = 'none';
+                    noButton.style.display = 'none'; // Hide no button
+                    startFallingElements(100, 'heart'); // Lots of hearts
+                    startFallingElements(50, 'smile'); // And smiles!
+                    
+                } else if (answer === 'no') {
+                    noClickCount++;
+                    responseDiv.style.display = 'none'; // Hide text response initially
+                    
+                    if (noClickCount === 1 || noClickCount === 2) {
+                        moveNoButton(); // Move the No button
+                        yesButton.style.display = 'inline-block'; // Keep Yes button visible
+                        noButton.style.display = 'inline-block'; // Keep No button visible
+                    } else if (noClickCount === 3) {
+                        responseDiv.textContent = 'Please rethink...!';
+                        responseDiv.style.display = 'block';
+                        yesButton.style.display = 'inline-block'; // Keep Yes button visible
+                        noButton.style.display = 'inline-block'; // Keep No button visible
+                        // Reset button position after "rethink" to make it reachable again
+                        noButton.style.setProperty('--button-x-offset', '0'); 
+                        noButton.style.setProperty('--button-y-offset', '0');
+                    } else if (noClickCount >= 4) {
+                        responseDiv.style.display = 'none';
+                        yesButton.style.display = 'none';
+                        noButton.style.display = 'none'; // Ensure both buttons are hidden
+                        body.classList.add('gloomy-background'); // Make background gloomy
+                        startFallingElements(150, 'heartbreak'); // Rapid heartbreaks
+                    }
+                }
+            };
+
+            // JavaScript for Interactive Pixel Heart and Apology Modal
+            const interactiveApologyHeart = document.getElementById('interactiveApologyHeart');
+            const apologyModal = document.getElementById('apologyModal');
+            const closeApologyModal = document.getElementById('closeApologyModal');
+
+            // Show the modal when the heart is clicked
+            interactiveApologyHeart.addEventListener('click', () => {
+                apologyModal.classList.add('visible');
+            });
+
+            // Hide the modal when the close button is clicked
+            closeApologyModal.addEventListener('click', () => {
+                apologyModal.classList.remove('visible');
+            });
+
+            // Hide the modal if the overlay is clicked (outside the content)
+            apologyModal.addEventListener('click', (event) => {
+                if (event.target === apologyModal) {
+                    apologyModal.classList.remove('visible');
+                }
+            });
+
+            // Initial gentle falling hearts
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createFallingElement('heart'), Math.random() * 5000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Heartfelt Apology</title>
+    <!-- HIGHLIGHTED CHANGE START: Removed extra 'a' here -->
     <!-- Google Fonts for a soft, romantic touch -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -37,6 +38,12 @@
             box-sizing: border-box;
             z-index: 1; /* Ensure content is above falling elements */
             position: relative; /* Needed for z-index to work */
+
+            /* Romantic Border Styling */
+            border: 3px solid #ffb6c1; /* Soft pink border */
+            outline: 3px solid #ffddf4; /* Lighter pink outer border */
+            outline-offset: 5px; /* Space between inner and outer border */
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.7); /* Soft glowing pink shadow */
         }
 
         /* Fade-in Animation */
@@ -92,47 +99,86 @@
             color: #333333; /* Darker text for the apology itself */
         }
 
-        /* Image and Video Grid Styling */
+        /* Image Section Styling */
         .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap to next line */
+            justify-content: center; /* Center items when they don't fill a full row */
+            align-items: flex-start; /* Align items to the top within their line */
             gap: 25px; /* Space between media items */
             margin-top: 30px;
             margin-bottom: 40px;
+            padding: 10px; /* Give some room for rotation */
         }
 
-        .media-grid img,
-        .media-grid .video-wrapper {
-            width: 100%;
-            height: 250px; /* Fixed height for consistency */
-            object-fit: cover; /* Ensures images cover the area */
+        .media-grid img {
+            max-width: 100%; /* Ensures images don't overflow their container */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 15px; /* Rounded corners for media */
             box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Standard shadow for media */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             display: block; /* Remove extra space below images */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            flex-basis: auto; /* Let content determine initial size */
+            min-width: 180px; /* Minimum width for images */
+            max-width: 300px; /* Maximum width for images */
+            margin: 10px; /* Space around each image */
         }
 
-        .media-grid img:hover,
-        .media-grid .video-wrapper:hover {
+        .media-grid img:hover {
             transform: translateY(-8px); /* Lift effect on hover */
             box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* More prominent shadow on hover */
         }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100) */
-            height: 0;
-            overflow: hidden;
+        /* Removed .video-wrapper and .video-wrapper iframe styles */
+
+
+        /* Song Links Styling */
+        .song-links {
+            margin-top: 30px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff0f5; /* Light pink background */
+            border-radius: 18px;
+            box-shadow: inset 0 2px 8px rgba(220, 150, 160, 0.2);
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .song-links h2 {
+            margin-top: 0;
+            color: #d1416e;
         }
+
+        .song-links ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px; /* Space between links */
+        }
+
+        .song-links li {
+            margin-bottom: 10px;
+        }
+
+        .song-links a {
+            display: inline-block; /* Allows padding and margin */
+            background-color: #e66487; /* Romantic rose pink */
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none; /* Remove underline */
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .song-links a:hover {
+            background-color: #c94065; /* Darker pink on hover */
+            transform: translateY(-2px); /* Slight lift */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
 
         /* Your Name Styling */
         .signature {
@@ -174,8 +220,16 @@
                 font-size: 0.95em;
             }
 
-            .media-grid {
-                grid-template-columns: 1fr; /* Single column on smaller screens */
+            /* For images on smaller screens, allow them to scale down */
+            .media-grid img {
+                min-width: 150px; /* Smaller min width on mobile */
+                max-width: 100%; /* Allow to take full width if needed */
+                margin: 5px; /* Less margin on mobile */
+            }
+
+            .song-links a {
+                padding: 8px 15px; /* Smaller padding for mobile links */
+                font-size: 1em;
             }
 
             .signature {
@@ -205,9 +259,8 @@
                 padding: 15px;
             }
 
-            .media-grid img,
-            .media-grid .video-wrapper {
-                height: 200px; /* Adjust height for mobile */
+            .media-grid img {
+                height: auto; /* Let height adjust naturally */
             }
         }
 
@@ -251,6 +304,20 @@
         @keyframes fall {
             0% { top: -10%; opacity: 1; transform: translateX(0) rotate(var(--rotation, 0deg)); }
             100% { top: 110%; opacity: 0; transform: translateX(calc(var(--offset) * 1px)) rotate(var(--rotation, 0deg)); }
+        }
+
+        /* --- Shake Animation for Interactive Heart --- */
+        @keyframes shake {
+            0%, 100% { transform: rotate(-45deg) translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(-45deg) translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: rotate(-45deg) translateX(5px); }
+        }
+
+        .interactive-pixel-heart.shake-animation {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            transform-origin: center center;
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
 
         /* Interactive Question Styling */
@@ -331,6 +398,7 @@
             position: fixed;
             top: 30px;
             right: 30px;
+            left: auto; /* Explicitly ensure it's not trying to calculate from left */
             z-index: 1000;
             display: flex; /* Use flexbox for alignment */
             align-items: center; /* Vertically align items */
@@ -357,17 +425,17 @@
             width: 60px; /* Same width as base */
             height: 60px; /* Same height as base */
             background-color: #e66487;
-            border-radius: 50%; /* Make them circles */
+            border-radius: 50%;
         }
 
         .interactive-pixel-heart::before {
-            top: -30px; /* Position above */
+            top: -30px;
             left: 0;
         }
 
         .interactive-pixel-heart::after {
             top: 0;
-            left: 30px; /* Position to the right */
+            left: 30px;
         }
 
         /* Clicked state for the interactive heart */
@@ -525,12 +593,138 @@
                 right: 15px;
             }
         }
+
+        /* Styles for the LLM Quote Generator */
+        .llm-quote-section {
+            margin-top: 50px;
+            margin-bottom: 40px;
+            background-color: #fcebeb; /* Lighter pink/red background for this section */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 100, 100, 0.1);
+        }
+
+        .llm-quote-section h2 {
+            color: #d1416e;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .llm-quote-display {
+            min-height: 80px; /* Give it some space */
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            font-family: 'Dancing Script', cursive; /* More elegant font for quotes */
+            font-size: 1.6em;
+            color: #6a052e; /* Darker, sophisticated pink/red */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #ffcfe1;
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease; /* Smooth transition for content changes */
+        }
+
+        .llm-quote-display.loading {
+            font-style: italic;
+            color: #999;
+        }
+
+        .llm-quote-button {
+            background-color: #e66487; /* Romantic rose pink */
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .llm-quote-button:hover {
+            background-color: #c94065;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+
+        .llm-quote-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Styles for the Love Quote Generator */
+        .love-quote-section {
+            margin-top: 50px;
+            margin-bottom: 40px;
+            background-color: #fcebeb; /* Lighter pink/red background for this section */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 100, 100, 0.1);
+        }
+
+        .love-quote-section h2 {
+            color: #d1416e;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .love-quote-display {
+            min-height: 80px; /* Give it some space */
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            font-family: 'Dancing Script', cursive; /* More elegant font for quotes */
+            font-size: 1.6em;
+            color: #6a052e; /* Darker, sophisticated pink/red */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #ffcfe1;
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease; /* Smooth transition for content changes */
+        }
+
+        .love-quote-display.loading {
+            font-style: italic;
+            color: #999;
+        }
+
+        .love-quote-button {
+            background-color: #e66487; /* Romantic rose pink */
+            color: #ffffff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .love-quote-button:hover {
+            background-color: #c94065;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+
+        .love-quote-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
     <!-- The new interactive pixel heart and message wrapper -->
     <div class="interactive-heart-wrapper">
-        <span class="open-heart-message">Open the Heart</span>
+        <span class="open-heart-message" id="openHeartMessage">Open the Heart</span>
         <div class="interactive-pixel-heart" id="interactiveApologyHeart"></div>
     </div>
 
@@ -636,71 +830,333 @@
             </p>
         </div>
         <div>
-            <div class=""apology-box">
+            <div class="apology-box">
                 <h2> The reasons for my craziness :( </h2>
                 <p>
                     1.I have overthought a lot before and felt insecure over certain issues
-                    and I couldn't be reassured because it happened again and I was 
+                    and I couldn't be reassured because it happened again and I was
                     scared if it will keep happening.
-                    2.I was frustrated being away and especially at being unable to balance 
-                    my studies, work and personal life. 
-                    3.Due to the lack of a proper routine, I became weak and was really absent minded.  
+                    2.I was frustrated being away and especially at being unable to balance
+                    my studies, work and personal life.
+                    3.Due to the lack of a proper routine, I became weak and was really absent minded.
                     I felt tired all the time and either slept a lot or didn't sleep at all.
                     Being absent minded was my flaw for a long time, I am not giving a reason for it.
                     4.Naturally , I get frustrated quickly if I try explaining something and someone doesn't get it.
                     It can be with anyone and this might be the reason I wasn't patient at times.
                     5.Without a proper routine, I pushed myself into a disturbed, undescribable state.
                     Everyone thinks it is simple to come out of it but if it was I would have long time ago.
-                    It isn't. 
+                    It isn't.
                     6.Sometimes , I am angry because I am hurt. If I am hurt sometimes, that is because
-                    I really love you and I just wouldn't have expected it to happen or I wouldn't have 
-                    expected that I would have put you in a position like that. 
+                    I really love you and I just wouldn't have expected it to happen or I wouldn't have
+                    expected that I would have put you in a position like that.
                 </p>
-                    </div>
-            <h2>Memories We Share:</h2>
+            </div>
+            <h2>Glimpses of how I would take care of you :❤️)</h2>
             <div class="media-grid">
+                <!--
+                  INSTRUCTIONS FOR CUSTOMIZATION:
+                  1. Replace these 'placehold.co' URLs with your own image URLs.
+                  2. For publicly hosted images, ensure the URL starts with `https://`.
+                  3. You can add more `<img>` tags if you have more pictures.
+                -->
                 <img
-                    src="https://placehold.co/400x300/f0d9e6/9c5b7c?text=Your+Cute+Pic+1"
-                    alt="Our Cute Memory 1"
+                    src="C:\Users\Admin\indexx\images\IMG_1407.jpeg"
+                    alt="Always by your side"
                     onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
                 />
                 <img
-                    src="https://placehold.co/400x300/e6f0d9/7c9c5b?text=Your+Cute+Pic+2"
-                    alt="Our Cute Memory 2"
+                    src="C:\Users\Admin\indexx\images\IMG_1414.jpeg"
+                    alt="I will cook all your favourite food :)"
                     onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
                 />
                 <img
-                    src="https://placehold.co/400x300/d9e6f0/5b7c9c?text=Your+Cute+Pic+3"
-                    alt="Our Cute Memory 3"
+                    src="C:\Users\Admin\indexx\images\IMG_1406.jpeg"
+                    alt="For my sweetheart"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1415.jpeg"
+                    alt="Your personal doctor"
                     onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
                 />
                 </div>
         </div>
 
         <div>
-            <h2>Moments to Replay:</h2>
+            <h2>US?(If you say yes) </h2>
             <div class="media-grid">
-                <div class="video-wrapper">
-                    <iframe
-                        src="http://www.youtube.com/embed/dQw4w9WgXcQ"
-                        title="Placeholder Video 1 (You can replace this!)"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                </div>
-                <div class="video-wrapper">
-                    <iframe
-                        src="http://www.youtube.com/embed/oZ6D_O_6u0Q"
-                        title="Placeholder Video 2 (You can replace this!)"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                </div>
+                <!--
+                  INSTRUCTIONS FOR CUSTOMIZATION:
+                  1. Replace these 'placehold.co' URLs with your own image URLs.
+                  2. For publicly hosted images, ensure the URL starts with `https://`.
+                  3. You can add more `<img>` tags if you have more pictures.
+                -->
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1416.jpeg"
+                    alt="New Shared Memory 1"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1398.jpeg"
+                    alt="New Shared Memory 2"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
                 </div>
         </div>
 
+        <div>
+            <h2>Based on true story(THE HOTEL)❤️<h2>
+            <div class="media-grid">
+                <!--
+                  INSTRUCTIONS FOR CUSTOMIZATION:
+                  1. Replace these 'placehold.co' URLs with your own image URLs.
+                  2. For publicly hosted images, ensure the URL starts with `https://`.
+                  3. You can add more `<img>` tags if you have more pictures.
+                -->
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1419.jpeg"
+                    alt="New Shared Memory 4"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1431.jpeg"
+                    alt="New Shared Memory 5"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1434.jpeg"
+                    alt="New Shared Memory 6"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1408.jpeg"
+                    alt="New Shared Memory 6"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                 <img
+                    src="C:\Users\Admin\indexx\images\IMG_1435.jpeg"
+                    alt="New Shared Memory 5"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                 <img
+                    src="C:\Users\Admin\indexx\images\IMG_1430.jpg"
+                    alt="New Shared Memory 5"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                </div>
+        </div>
+
+        <div>
+            <h2>US (IN THE FAR FAR FUTURE?)</h2>
+            <div class="media-grid">
+                <!--
+                  INSTRUCTIONS FOR CUSTOMIZATION:
+                  1. Replace these 'placehold.co' URLs with your own image URLs.
+                  2. For publicly hosted images, ensure the URL starts with `https://`.
+                  3. You can add more `<img>` tags if you have more pictures.
+                -->
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1418.jpeg"
+                    alt="New Shared Memory 4"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1422_1.jpeg"
+                    alt="New Shared Memory 5"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1437.jpeg"
+                    alt="New Shared Memory 6"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1428.jpeg"
+                    alt="New Shared Memory 6"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1420.jpeg"
+                    alt="New Shared Memory 6"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                <img
+                    src="C:\Users\Admin\indexx\images\IMG_1424.jpeg"
+                    alt="New Shared Memory 6"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+Missing';"
+                />
+                </div>
+        </div>
+
+        <div class="apology-box">
+            <h2>you are perfect<3 </h2>
+            <p>
+               I would take the world off of your shoulders if it was ever to move or not.
+               Even if I am the reason I would give it my all to acknowledge, change and 
+               give you the relationship you would wanna stay in..
+               To me, you are perfect. 
+               and I still can't help but wonder how you're gorgeous though I have my answer.
+               I wish that you are my today and all of my tomorrows.
+               You are honestly that one dream I never wanna wake up from.
+               You are my once in a lifetime and
+               For you, I'd risk it all.
+               I wish I could have a forever with you but honestly even forever wouldn't be enough.
+               You have the prettiest smile I have ever seen!
+               The prettiest eyes...your lips..your moles? 
+               I could look at you all day and never get tired.
+               You are the reason I Believe in love Shrijan..You are 
+               Overtime, I have realised that love isn't about finding the perfect person.
+               It's about seeing an imperfect person perfectly and you?
+               Phew, I love all of you and will keep loving too.
+               I love this one of line from my fav tv show that could relate to how I feel about you..
+               "The World disappears when your eyes find mine. I'd burn it down to keep the look forever"
+               Facetime la, nerla ela, I didn't and don't ever wanna stop gazing into those eyes of yours.
+               Those are honestly enough to make anyone fall in love!
+               If my heart and mind were paper, I would write your name into all of those pages, 
+               because it's so full of you !
+               I cannot stop thinking about you and yes I really miss you so much that it hurts..
+               Okay, maybe I do deserve everything I had or have coming up my way but I am still not 
+               done fighting for this, us, the future, because they were the most beautiful images I have ever
+               visualised and I want it all. I wanna give it all. I wanna share it all with you.
+               I could go on and on. you're the only one that can bring me to my knees like this 
+               because that's how hard I fell for you.            
+               Na unaku pudicha pranika va tha varuven, and irupen. 
+               I love you and I extremely miss talking to you.
+               I know I don't matter to you now, but I couldn't stop trying. 
+               Can you be with me as I figure this thing called life out ? 
+               I know I don't have any rights to ask you that but I just wish...
+               I am not annoying and a fighter all the time. I am sorry but I am seriously not.
+               I really hope you have some faith in me and there's still a part of you that loves me... 
+               I love you, Shrijan. I love you ❤️.
+            </p>
+        </div>
+
+        <div class="song-links">
+            <h2>Songs for You ❤️</h2>
+            <ul>
+                <li><a href="https://youtu.be/xSrgt6QG0nE?list=RDxSrgt6QG0nE"_blank">1</a></li>
+                <li><a href="https://www.youtube.com/watch?v=iG7wrYO0IX0&list=RDiG7wrYO0IX0&start_radio=1" target="_blank">2</a></li>
+                <li><a href="https://youtu.be/QCGBu6ubU-o?list=RDQCGBu6ubU-o" target="_blank">3</a></li>
+                <li><a href="https://youtu.be/2P_0Q8CIjw8?list=RD2P_0Q8CIjw8" target="_blank">4</a></li>
+                <li><a href="https://youtu.be/_f8dMFzYRCE?list=RD_f8dMFzYRCE" target="_blank">5</a></li>
+                <li><a href="https://youtu.be/EjUP08N89mI?list=RDEjUP08N89mI" target="_blank">6</a></li>
+                <!-- Add more song links here! -->
+            </ul>
+        </div>
+
+        <!-- NEW CUSTOM IMAGE COLUMN -->
+        <div class="custom-image-column">
+            <h2>Some wishes from the 44 which I think I will be able to do 😊</h2>
+            <!-- Row 1 -->
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\bro1.jpg" alt="M5">
+                <p>Get your m5 and see your priceless reaction 💕 (Real Car nga)</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\bro.jpg" alt="France">
+                <p>Your favourite destination...polama? 💕</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\bro3.jpg" alt="Thala">
+                <p>I will watch all of the ajith movies with you 💖</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\bro0.jpg" alt="oh shanti">
+                <p>Le me coming from Sydney be like (Vaaranam Aayiram moment)</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\bib.jpg" alt="photo">
+                <p>I will take the best pictures for you ofcourse 💕 (unpaid) </p>
+            </div>
+            <!-- Row 2 -->
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\bi.jpg" alt="guitarist">
+                <p>Ithu en aasai ngaaa</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\brown.jpg" alt="sunset">
+                <p>You once told me you wanted to hold my hand and take a long walk at the beach, can we?</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\csk.jpg" alt="sunset">
+                <p>We can watch a match together and scream our lungs outtt!!</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\brawl.jpg" alt="brawl stars">
+                <p>Let's play together...?😙</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\gd.jpg" alt="Our secret spot">
+                <p>You can KO gd and jd 😭 </p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\final.jpg" alt="Promise">
+                <p>You, me and the jellycat for a lil more while? (konjo forever nga) 💕</p>
+            </div>
+        </div>
+        <!-- END NEW CUSTOM IMAGE COLUMN -->
+
+        <div class="apology-box">
+            <h2>I am sorry...</h2>
+            <p>
+               I can keep going on and on about how much I love you ana right now 
+               I want you to know that I deeply regret everything I have ever did that has hurt you
+               I am really sorry to have made you feel things that you shouldn't have..
+               I am sorry to piss you off constantly and messed up a lot in the name of trying to make it better..
+               I want you to know that I am truly sorry for everything that has happened thangam
+               I am and will be a better person. All of what I have done wasn't me entirely.
+               I wanna find my way back to you, I really am struggling to but I am insanely hopeful.
+               I know I can take really good care of you and keep you happy thangam, I really do.
+               Please reach out to me as soon as you can before it is too late
+               I❤️U
+            </p>
+            </divdiv>
+        
+        <!-- LOVE QUOTE GENERATOR SECTION -->
+        <div class="love-quote-section">
+            <h2>Song Junction!! ✨</h2>
+            <div class="love-quote-display" id="loveQuoteDisplay">Click the button below to receive your lyric!</div>
+            <button class="love-quote-button" onclick="generateLoveQuote()">There are 20,have a go! ❤️</button>
+        </div>
+        <!-- END LOVE QUOTE GENERATOR SECTION -->
+
+        
+            <div>
+            <div class="media-grid">
+                <!--
+                  INSTRUCTIONS FOR CUSTOMIZATION:
+                  1. Replace these 'placehold.co' URLs with your own image URLs.
+                  2. For publicly hosted images, ensure the URL starts with `https://`.
+                  3. You can add more `<img>` tags if you have more pictures.
+                -->
+                <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\IMG_1480.jpeg" alt="comfort">
+                <p>I will always promise to hug you tight during your lows 🫂💖  </p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\IMG_1481.jpeg" alt="Our secret spot">
+                <p>And hug you extra tight during your highs🤗✨</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\vit.jpg" alt="Promise">
+                <p>If you are at college, I promise to come there 💖💕</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\london.jpg" alt="Promise">
+                <p>If you study at London, I promise to visit you there as well(hehe) 💖💕</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\IMG_1479.jpeg" alt="Promise">
+                <p>Whatever the place might be, the distance, My love will never change for you 😘💕</p>
+            </div>
+            <div class="image-with-text">
+                <img src="C:\Users\Admin\indexx\images\IMG_1440.jpeg"alt="Promise">
+                <p>I promise to always be there for you and love you wholeheartedly🌹💞</p>
+            </div>
+        </div>
+
         <div class="interactive-question">
-            <h2>Will you forgive me?</h2>
+            <h2>Can we be us again?</h2>
             <div class="buttons-container">
                 <button class="yes-button" onclick="handleForgive('yes')">Yes</button>
                 <button class="no-button" onclick="handleForgive('no')">No</button>
@@ -709,14 +1165,14 @@
         </div>
 
         <p>
-            I hope you can find it in your heart to forgive me. My love for you is endless.
-            Please know that every apology comes from the deepest part of my heart.
+            I really hope that I can find my way back to you this time. I am sincerely sorry for everything thangam..
+            I love you unconditionally ❤️
         </p>
 
         <p class="signature">
             With all my love,
             <br />
-            thangam
+            Pranika ❤️
         </p>
     </div>
 
@@ -728,6 +1184,36 @@
             const responseDiv = document.getElementById('response');
             const yesButton = document.querySelector('.yes-button');
             const noButton = document.querySelector('.no-button');
+            const interactiveApologyHeart = document.getElementById('interactiveApologyHeart');
+            const openHeartMessage = document.getElementById('openHeartMessage');
+            const loveQuoteDisplay = document.getElementById('loveQuoteDisplay'); 
+
+            // HIGHLIGHTED CHANGE START - Removed trailing comma on the last element
+            const loveQuotes = [
+                "When I said that I love you, I meant that I love you forever.❤️",
+                "I simply love you more than life itself.❤️",
+                "I think you are too divine for my human mind.❤️",
+                "You will always be my favourite form of loving.❤️",
+                "Life makes sense when I am with you.❤️",
+                "I promise to be better, to love harder, and to cherish every single moment with you.❤️",
+                "Entha desam ponapothum enudaya sontha desam unathu idhayam thaane :) ❤️",
+                "Take me to your heart, for it's there I belong.❤️",
+                "I hope you don't mind that I put in words how wonderful life is when you are around.❤️",
+                "You're the closest to heaven I'll ever be on earth.❤️",
+                "Take my hand, Take my whole life too for I can't help falling in love with you.❤️",
+                "Everything means nothing if I ain't got you.❤️",
+                "Another day, Another night, I long to hold you tight.❤️",
+                "If our love is wrong then I don't ever wanna be right.❤️",
+                "Vendune saami ela varama thandha thunai nee tha (nambu thangam).❤️",
+                "Nee ilamal kavithaiyum isaiyum suyave tharaathe.❤️",
+                "Vandha pothu enna thalli enga pora nee, nee thalli ponathaale naanum yengi poren da.❤️",
+                "Sollatha ennangal polalladha aasaigal unaale seruthe baaram kooduthe.❤️",
+                "En kanneer en thanneer ellamae nee anbae, En inbam en thunbam ellamae nee anbae ,En vaazhvum en saavum un kannil asaivilae.❤️",
+                "pogum varai pogalam, ena pizhaiye?" // Removed trailing comma here
+            ];
+            // HIGHLIGHTED CHANGE END
+
+            let lastQuoteIndex = -1; // Initialize to -1 to ensure the first quote can be any valid index
 
             let noClickCount = 0; // Counter for 'No' clicks
             let lastMouseX = 0;
@@ -749,7 +1235,7 @@
                 } else if (type === 'smile') {
                     element.textContent = '😊'; // Emoji for smile
                 } else if (type === 'heartbreak') {
-                    element.textContent = '💔'; // Emoji for heartbreak
+                    element.textContent = '�'; // Emoji for heartbreak
                     element.style.color = '#ff0000'; // Red color for heartbreak
                     element.style.fontSize = '3em'; // Larger broken heart
                 }
@@ -832,6 +1318,16 @@
                     noButton.style.display = 'none'; // Hide no button
                     startFallingElements(100, 'heart'); // Lots of hearts
                     startFallingElements(50, 'smile'); // And smiles!
+
+                    // Add shake animation to interactive heart
+                    interactiveApologyHeart.classList.add('shake-animation');
+                    setTimeout(() => {
+                        interactiveApologyHeart.classList.remove('shake-animation');
+                    }, 700); // Remove after animation
+
+                    // Change message and color of "Open the Heart"
+                    openHeartMessage.textContent = "";
+                    openHeartMessage.style.color = '#32CD32'; // LimeGreen
                     
                 } else if (answer === 'no') {
                     noClickCount++;
@@ -850,17 +1346,38 @@
                         noButton.style.setProperty('--button-x-offset', '0'); 
                         noButton.style.setProperty('--button-y-offset', '0');
                     } else if (noClickCount >= 4) {
-                        responseDiv.style.display = 'none';
+                        responseDiv.textContent = 'Whelp..,Atleast I tried, I am still not giving up sorry :)';
+                        responseDiv.style.display = 'block';
                         yesButton.style.display = 'none';
                         noButton.style.display = 'none'; // Ensure both buttons are hidden
                         body.classList.add('gloomy-background'); // Make background gloomy
                         startFallingElements(150, 'heartbreak'); // Rapid heartbreaks
+
+                        // Add shake animation to interactive heart
+                        interactiveApologyHeart.classList.add('shake-animation');
+                        setTimeout(() => {
+                            interactiveApologyHeart.classList.remove('shake-animation');
+                        }, 700); // Remove after animation
+
+                        // Change message and color of "Open the Heart" for gloomy state
+                        openHeartMessage.textContent = "NAH YOU DIDN'T JUST CLICK THAT";
+                        openHeartMessage.style.color = '#B22222'; // Firebrick red
                     }
                 }
             };
 
+            // Function to generate a random love quote (this is the one called by your button)
+            window.generateLoveQuote = function() {
+                 let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * loveQuotes.length);
+                } while (randomIndex === lastQuoteIndex); // Keep generating until it's different from the last one
+                
+                loveQuoteDisplay.textContent = loveQuotes[randomIndex];
+                lastQuoteIndex = randomIndex; // Update the last displayed quote index
+            };
+
             // JavaScript for Interactive Pixel Heart and Apology Modal
-            const interactiveApologyHeart = document.getElementById('interactiveApologyHeart');
             const apologyModal = document.getElementById('apologyModal');
             const closeApologyModal = document.getElementById('closeApologyModal');
 
@@ -889,3 +1406,4 @@
     </script>
 </body>
 </html>
+�
